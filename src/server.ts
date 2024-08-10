@@ -1,7 +1,7 @@
 import { appDataSource } from "./config/db";
 import app from "./app";
 
-const port = 8000;
+const port = 443;
 
 app.use("/", (req: any, res: any) => {
   res.send({ message: "Hi Node!" });

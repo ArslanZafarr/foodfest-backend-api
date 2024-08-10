@@ -16,7 +16,7 @@ interface Config {
 
 const config: Config = {
   NODE_ENV: process.env.NODE_ENV || "development",
-  PORT: parseInt(process.env.PORT || "8000"),
+  PORT: parseInt(process.env.PORT || "443"),
   DB_HOST: process.env.DB_HOST || "localhost",
   DB_PORT: parseInt(process.env.DB_PORT || "3306"),
   DB_USERNAME: process.env.DB_USERNAME || "root",
