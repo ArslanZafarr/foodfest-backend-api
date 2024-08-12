@@ -4,36 +4,42 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
-} from 'typeorm';
-import { Admin } from './Admin';
+  OneToOne,
+  JoinColumn,
+} from "typeorm";
+import { Profile } from "./Profile";
+import { UserHasRole } from "./UserHasRole";
 
-@Entity('users')
+@Entity("users")
 export class User {
   @PrimaryGeneratedColumn()
   user_id: number;
 
-  @Column({ type: 'varchar', length: 50, unique: true })
+  @Column({ type: "varchar", length: 50 })
   username: string;
 
-  @Column({ type: 'varchar', length: 100, unique: true })
+  @Column({ type: "varchar", length: 100 })
   email: string;
 
-  @Column({ type: 'varchar', length: 255 })
+  @Column({ type: "varchar", length: 255 })
   password_hash: string;
 
-  @Column({ type: 'varchar', length: 15, unique: true })
+  @Column({ type: "varchar", length: 15 })
   phone_number: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: "text", nullable: true })
   refresh_token: string | null;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: "timestamp" })
   created_at: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
 
-  @OneToMany(() => Admin, admin => admin.user)
-  admins: Admin[];
+  @OneToOne(() => Profile, (profile) => profile.user, { cascade: true })
+  @JoinColumn()
+  profile: Profile;
+
+  @OneToOne(() => UserHasRole, (userHasRole) => userHasRole.user)
+  userHasRole: UserHasRole;
 }
