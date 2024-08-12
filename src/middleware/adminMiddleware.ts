@@ -10,7 +10,7 @@ export function adminMiddleware(
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    return res.status(401).json({ message: "Authorization header missing" });
+    return res.status(401).json({ message: "Unauthorized" });
   }
 
   const token = authHeader.split(" ")[1];
