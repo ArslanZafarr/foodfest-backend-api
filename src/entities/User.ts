@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 import { Profile } from "./Profile";
 import { UserHasRole } from "./UserHasRole";
+import { Restaurant } from "./Restaurant";
 
 @Entity("users")
 export class User {
@@ -42,4 +44,7 @@ export class User {
 
   @OneToOne(() => UserHasRole, (userHasRole) => userHasRole.user)
   userHasRole: UserHasRole;
+
+  @OneToMany(() => Restaurant, (restaurant) => restaurant.user)
+  restaurants: Restaurant[];
 }

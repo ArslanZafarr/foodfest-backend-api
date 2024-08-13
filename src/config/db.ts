@@ -26,7 +26,7 @@ export const appDataSource = new DataSource({
   database: process.env.DB_NAME,
   entities: entitiesPath,
   migrations: migrationsPath,
-  synchronize: dbSyncStatus,
+  synchronize: true,
   logging: true,
 });
 
